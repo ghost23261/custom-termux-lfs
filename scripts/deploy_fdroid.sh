@@ -49,12 +49,12 @@ echo "⚙️  Configuring repository..."
 cd "$FDROID_DIR"
 
 cat > config.yml << EOF
-repo_url: https://your-server.com/fdroid
-repo_name: Custom Termux Private Repository
+repo_url: https://your-server.com/fdroid/repo/
+repo_name: Custom Termux Private Repo
 repo_description: Private F-Droid repository for Custom Termux LFS Build
 repo_icon: icon.png
 archive_older: 3
-keystore: keystore.jks
+keystore: /var/www/fdroid/keystore.jks
 repo_keyalias: termux-custom
 EOF
 
