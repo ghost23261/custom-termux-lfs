@@ -1,108 +1,123 @@
-# <span style="color: #CC0000;">🛡️ Custom Termux</span>
+# <span style="color: #0066CC;">🐧 Custom Termux LFS</span>
 
-<span style="color: #CC0000;">**Red Hat Inspired - Enterprise Linux Terminal for Android**</span>
+<span style="color: #0066CC;">**Linux From Scratch Inspired - Custom Terminal for Android**</span>
 
-[![Red Hat](https://img.shields.io/badge/Powered%20by-Red%20Hat-CC0000?style=for-the-badge&logo=redhat)](https://redhat.com)
+[![LFS](https://img.shields.io/badge/Built%20with-LFS-0066CC?style=for-the-badge&logo=linux)](https://linuxfromscratch.org)
 
-A custom Android application that provides an enterprise-grade terminal interface, inspired by Red Hat's reliability and security standards.
+A custom Android application that provides a terminal interface, built following Linux From Scratch principles for a minimal, self-contained environment.
 
-## <span style="color: #CC0000;">🔥 Overview</span>
+## <span style="color: #0066CC;">🔧 Overview</span>
 
-This project builds a custom Android APK featuring a robust terminal emulator with Red Hat-inspired design and functionality.
+This project creates a custom Android APK with a basic terminal emulator, inspired by the Linux From Scratch methodology of building systems from source.
 
-**Status:** <span style="color: green;">✅ Production Ready</span> | **Version:** v1.0.0 | **API:** 24+ (Android 7.0+)
+**Status:** <span style="color: green;">✅ Ready for Build</span> | **Version:** v1.0.0 | **API:** 24+ (Android 7.0+)
 
-## <span style="color: #CC0000;">🚀 Features</span>
+## <span style="color: #0066CC;">⚙️ Features</span>
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  [🔴] Enterprise-Grade Terminal Interface                       │
-│  [🔴] Red Hat Inspired UI/UX Design                             │
-│  [🔴] Secure Service Architecture                               │
-│  [🔴] Android Native Development Kit Integration               │
-│  [🔴] ARM64 Architecture Support                                │
-│  [🔴] Private Repository Deployment                             │
-│  [🔴] Automated Build System                                    │
-│  [🔴] Enterprise Distribution Ready                             │
+│  [🔵] LFS-Inspired Minimal Design                               │
+│  [🔵] Basic Terminal Interface                                  │
+│  [🔵] Android Service Integration                               │
+│  [🔵] ARM64 Architecture                                        │
+│  [🔵] Self-Contained Build System                               │
+│  [🔵] Script-Based Automation                                   │
+│  [🔵] F-Droid Deployment Support                                │
+│  [🔵] Open Source Components                                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## <span style="color: #CC0000;">📦 Installation</span>
+## <span style="color: #0066CC;">📦 Installation</span>
 
-### <span style="color: #CC0000;">Method 1: APK Installation (Recommended)</span>
+### <span style="color: #0066CC;">Method 1: Direct APK Installation</span>
 
 ```bash
-# Transfer APK to Android device
+# Build the APK first
+bash scripts/complete_build.sh
+
+# Transfer to device
 adb push output/custom-termux.apk /sdcard/Download/
 
-# Install via ADB
+# Install
 adb install /sdcard/Download/custom-termux.apk
 ```
 
-### <span style="color: #CC0000;">Method 2: Enterprise Deployment</span>
+### <span style="color: #0066CC;">Method 2: F-Droid Repository</span>
 
 ```bash
-# For enterprise environments
-# Deploy via MDM (Mobile Device Management)
-# Or private app store
+# Deploy to F-Droid
+bash scripts/deploy_fdroid.sh
+
+# Then install from F-Droid on device
 ```
 
-## <span style="color: #CC0000;">🏗️ Build Instructions</span>
+## <span style="color: #0066CC;">🏗️ Build Process</span>
 
 ```bash
-# Build the enterprise APK
+# Complete build (includes gradle setup)
 bash scripts/complete_build.sh
 
-# Verify build integrity
-ls -la output/custom-termux.apk
+# Or build APK directly
+bash scripts/build_apk.sh
+
+# Check output
+ls -la output/
 ```
 
-## <span style="color: #CC0000;">🚢 Deployment</span>
+## <span style="color: #0066CC;">🚀 Deployment</span>
 
-### <span style="color: #CC0000;">F-Droid Repository</span>
+### <span style="color: #0066CC;">F-Droid</span>
 
 ```bash
-# Deploy to private F-Droid repository
 bash scripts/deploy_fdroid.sh
 ```
 
-### <span style="color: #CC0000;">Play Store</span>
+### <span style="color: #0066CC;">Play Store</span>
 
-Follow the instructions in `PLAYSTORE_DEPLOY.md` for enterprise Play Store deployment.
+See `PLAYSTORE_DEPLOY.md` for Play Store publishing steps.
 
-## <span style="color: #CC0000;">🏛️ Project Structure</span>
+## <span style="color: #0066CC;">📁 Project Structure</span>
 
 ```
 custom-termux-lfs/
-├── android_project/     # 📱 Android application source
-├── scripts/            # 🔧 Build & deployment scripts
-├── termux/             # 🐧 Termux environment files
-├── pkgs/               # 📦 Package repository
-└── README.md           # 📖 This file
+├── android_project/     # 📱 Android app source (Java/XML)
+│   ├── app/src/main/
+│   │   ├── AndroidManifest.xml
+│   │   ├── java/com/termux/custom/  # Activities & Services
+│   │   └── res/                     # Resources
+│   └── build.gradle                 # Gradle config
+├── scripts/            # 🔧 Build & deploy scripts
+│   ├── build_apk.sh
+│   ├── deploy_fdroid.sh
+│   └── complete_build.sh
+├── termux/             # 🐧 Termux environment setup
+├── pkgs/               # 📦 Package index/website
+└── README.md           # 📖 Documentation
 ```
 
-## <span style="color: #CC0000;">⚙️ Requirements</span>
+## <span style="color: #0066CC;">🛠️ Requirements</span>
 
-- <span style="color: #CC0000;">Android Studio</span> or Gradle 8.1+
-- <span style="color: #CC0000;">Android SDK 34</span>
-- <span style="color: #CC0000;">Android NDK r26b</span> (for native components)
-- <span style="color: #CC0000;">Java 11+</span>
+- **Android SDK 34**
+- **Gradle 8.1+**
+- **Java 11+**
+- **Android NDK** (optional, for native code)
 
-## <span style="color: #CC0000;">🔒 Security</span>
+## <span style="color: #0066CC;">🔍 How It Works</span>
 
-This application follows Red Hat's security principles:
-- Minimal attack surface
-- Secure service architecture
-- No unnecessary permissions
-- Enterprise-ready deployment
+1. **MainActivity**: Launcher with button to start terminal
+2. **TermuxService**: Background service for terminal operations
+3. **TerminalActivity**: Displays the terminal interface
+4. **TerminalView**: Custom view for terminal output/input
 
-## <span style="color: #CC0000;">📞 Support</span>
+## <span style="color: #0066CC;">📚 Resources</span>
 
-For enterprise support and custom deployments, contact the development team.
+- [Linux From Scratch](https://linuxfromscratch.org)
+- [Android Developer Docs](https://developer.android.com)
+- [Termux Project](https://termux.dev)
 
 ---
 
-<span style="color: #CC0000;">**Built with ❤️ and Red Hat inspiration**</span>
+<span style="color: #0066CC;">**Built from scratch, like LFS teaches us.**</span>
 
 # 2. Grant permissions
 #    - Storage access
