@@ -20,26 +20,35 @@
 ### 1. Prepare Release APK
 
 ```bash
-cd /mnt/samsung_ssd/android_project
+cd android_project
 
-# Generate signing key for Play Store
+# Generate signing key for Play Store if you do not already have one
 keytool -genkey -v -keystore custom-termux-release.keystore \
     -alias custom-termux -keyalg RSA -keysize 2048 -validity 10000
 
+# Configure signing properties for Gradle or export them in your shell
+export PLAYSTORE_KEYSTORE_FILE="$(pwd)/custom-termux-release.keystore"
+export PLAYSTORE_KEYSTORE_PASSWORD="your-keystore-password"
+export PLAYSTORE_KEY_ALIAS="custom-termux"
+export PLAYSTORE_KEY_PASSWORD="your-key-password"
+
 # Build release APK
-./gradlew assembleRelease
+./gradlew clean assembleRelease
 
-# Sign APK
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 \
-    -keystore custom-termux-release.keystore \
-    app/build/outputs/apk/release/app-release-unsigned.apk \
-    custom-termux
-
-# Align APK
+# Align APK for Play Store
 zipalign -v 4 \
     app/build/outputs/apk/release/app-release-unsigned.apk \
     custom-termux-v1.0.0-release.apk
+
+# Sign aligned APK if it is still unsigned
+apksigner sign --ks "$PLAYSTORE_KEYSTORE_FILE" \
+    --ks-pass pass:"$PLAYSTORE_KEYSTORE_PASSWORD" \
+    --key-pass pass:"$PLAYSTORE_KEY_PASSWORD" \
+    --out custom-termux-v1.0.0-playstore.apk \
+    custom-termux-v1.0.0-release.apk
 ```
+
+> Tip: from the repository root, you can also use `scripts/deploy_playstore.sh` after exporting the same signing variables.
 
 ### 2. Play Console Setup
 

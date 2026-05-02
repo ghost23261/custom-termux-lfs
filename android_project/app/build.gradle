@@ -16,10 +16,24 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        playstore {
+            if (project.hasProperty("PLAYSTORE_KEYSTORE_FILE")) {
+                storeFile file(PLAYSTORE_KEYSTORE_FILE)
+                storePassword PLAYSTORE_KEYSTORE_PASSWORD
+                keyAlias PLAYSTORE_KEY_ALIAS
+                keyPassword PLAYSTORE_KEY_PASSWORD
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (signingConfigs.playstore.storeFile != null) {
+                signingConfig signingConfigs.playstore
+            }
         }
     }
     compileOptions {
