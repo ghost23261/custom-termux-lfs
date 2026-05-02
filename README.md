@@ -34,7 +34,9 @@ Cross-compiled with **Android NDK r26b** for **ARM64 architecture**.
 │  [✓] OpenSSL 3.3.2 + Zlib 1.3.1                                 │
 │  [✓] Android NDK r26b Cross-Compiled                            │
 │  [✓] ARM64 (aarch64) Architecture                               │
-│  [✓] Private Network Ready                                      │
+│  [✓] Private F-Droid Repository Support                         │
+│  [✓] Automatic OTA Updates                                      │
+│  [✓] Private Network Distribution                               │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -72,7 +74,24 @@ chmod +x install-termux.sh
 ./install-termux.sh
 ```
 
-### METHOD 3: Manual Setup
+### METHOD 3: F-Droid Repository (Private Network)
+
+```bash
+# Setup private F-Droid repository for your network
+
+# 1. Install F-Droid client on Android devices
+#    Download from: https://f-droid.org/F-Droid.apk
+
+# 2. Add your private repository
+#    F-Droid > Settings > Repositories > + Add
+#    URL: https://your-private-server/fdroid/repo
+#    Fingerprint: [Your signing key fingerprint]
+
+# 3. Or use QR code to add repository
+#    Generate with: fdroid qr --repo-url https://your-server/fdroid/repo
+```
+
+### METHOD 4: Manual Setup
 
 ```bash
 # Requirements: Android 7.0+ (API 24), 500MB free space
@@ -181,6 +200,67 @@ sudo ./scripts/create_android_apk.sh
 
 # Step 6: Complete build and package
 sudo ./scripts/complete_build.sh
+```
+
+---
+
+## 📦 F-DROID DEPLOYMENT
+
+### Setup Private F-Droid Repository
+
+```bash
+# Install F-Droid server tools
+sudo apt install -y fdroidserver
+
+# Initialize F-Droid repository
+mkdir -p /var/www/fdroid
+cd /var/www/fdroid
+fdroid init
+
+# Configure repository
+cat > config.yml << 'EOF'
+repo_url: https://your-private-server/fdroid
+repo_name: Custom Termux Private Repo
+repo_description: Private F-Droid repository for Custom Termux
+archive_older: 3
+EOF
+
+# Copy your APK to repo
+mkdir -p /var/www/fdroid/repo
+cp /mnt/samsung_ssd/output/distribution/custom-termux.apk /var/www/fdroid/repo/
+
+# Update F-Droid index
+fdroid update
+
+# Sign repository
+fdroid signindex
+
+# Generate QR code for easy repo adding
+fdroid qr --repo-url https://your-private-server/fdroid/repo
+```
+
+### F-Droid Client Setup
+
+```bash
+# On Android devices:
+# 1. Install F-Droid from https://f-droid.org
+# 2. Open F-Droid app
+# 3. Go to Settings → Repositories
+# 4. Click "+" to add new repository
+# 5. Enter: https://your-private-server/fdroid/repo
+# 6. Scan QR code or enter fingerprint manually
+# 7. Custom Termux will appear in app list
+```
+
+### Automatic Updates via F-Droid
+
+```bash
+# F-Droid will automatically:
+# - Check for updates daily
+# - Download updates when available
+# - Notify users of new versions
+# - Handle signature verification
+# - Allow one-tap updates
 ```
 
 ---
