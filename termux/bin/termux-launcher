@@ -1,0 +1,10 @@
+#!/system/bin/sh
+# Custom Termux launcher
+
+export TERMUX_PREFIX="/data/data/com.termux.custom/files/usr"
+export TERMUX_HOME="/data/data/com.termux.custom/files/home"
+export PATH="$TERMUX_PREFIX/bin:$PATH"
+export LD_LIBRARY_PATH="$TERMUX_PREFIX/lib:$LD_LIBRARY_PATH"
+
+# Start bash shell
+exec "$TERMUX_PREFIX/bin/bash" --login

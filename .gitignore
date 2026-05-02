@@ -1,0 +1,56 @@
+# Build outputs
+output/
+*.apk
+*.tar.gz
+
+# Downloaded packages (large files)
+sources/*.txz
+sources/*.tar.gz
+sources/*.tar.xz
+
+# Build tools (very large)
+build_tools/android-ndk-*/
+
+# Gradle build files
+android_project/.gradle/
+android_project/build/
+android_project/app/build/
+android_project/gradle/wrapper/gradle-wrapper.jar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+build.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Large binaries
+*.so
+*.a
+*.dll
+*.exe
+
+# Package archives
+*.deb
+*.rpm
+*.zip
+
+# Compiled objects
+*.o
+*.obj
+
+# Backup files
+*.bak
+*.backup

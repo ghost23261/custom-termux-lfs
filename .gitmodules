@@ -1,0 +1,3 @@
+[submodule "termux/build-scripts"]
+	path = termux/build-scripts
+	url = https://github.com/termux/termux-packages.git

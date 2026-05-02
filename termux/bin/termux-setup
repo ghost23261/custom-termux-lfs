@@ -1,0 +1,13 @@
+#!/bin/bash
+# Termux environment setup script
+
+export TERMUX_PREFIX=/data/data/com.termux.custom/files/usr
+export TERMUX_HOME=/data/data/com.termux.custom/files/home
+export PATH=$TERMUX_PREFIX/bin:$PATH
+export LD_LIBRARY_PATH=$TERMUX_PREFIX/lib:$LD_LIBRARY_PATH
+
+# Create basic directories
+mkdir -p "$TERMUX_HOME"/{bin,etc,tmp,usr}
+mkdir -p "$TERMUX_PREFIX"/{bin,etc,lib,share}
+
+echo "Custom Termux environment initialized"
