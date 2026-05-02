@@ -29,6 +29,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".TerminalActivity"
+            android:exported="false" />
+
         <service
             android:name=".TermuxService"
             android:exported="false" />

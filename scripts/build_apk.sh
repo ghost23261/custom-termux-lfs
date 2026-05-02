@@ -5,7 +5,7 @@
 
 set -e
 
-LFS="/mnt/samsung_ssd"
+LFS="/workspaces/custom-termux-lfs"
 ANDROID_PROJECT="$LFS/android_project"
 
 echo "Building APK..."

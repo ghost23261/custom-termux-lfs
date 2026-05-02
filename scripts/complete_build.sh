@@ -5,7 +5,7 @@
 
 set -e
 
-LFS="/mnt/samsung_ssd"
+LFS="/workspaces/custom-termux-lfs"
 ANDROID_PROJECT="$LFS/android_project"
 OUTPUT_DIR="$LFS/output"
 TERMUX_ROOT="$LFS/termux"

@@ -1,103 +1,108 @@
-```
- ██████╗██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗████████╗███████╗██████╗ ██╗   ██╗██╗  ██╗
-██╔════╝██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║╚══██╔══╝██╔════╝██╔══██╗╚██╗ ██╔╝██║ ██╔╝
-██║     ██║   ██║█████╗     ██║   ██║   ██║██╔████╔██║   ██║   █████╗  ██████╔╝ ╚████╔╝ █████╔╝
-██║     ██║   ██║██╔══╝     ██║   ██║   ██║██║╚██╔╝██║   ██║   ██╔══╝  ██╔══██╗  ╚██╔╝  ██╔═██╗
-╚██████╗╚██████╔╝██║        ██║   ╚██████╔╝██║ ╚═╝ ██║   ██║   ███████╗██║  ██║   ██║   ██║  ██╗
- ╚═════╝ ╚═════╝ ╚═╝        ╚═╝    ╚═════╝ ╚═╝     ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+# <span style="color: #CC0000;">🛡️ Custom Termux</span>
 
-        ╔══════════════════════════════════════════════════════════════════════════╗
-        ║         LFS SLACKWARE LINUX - CUSTOM TERMUX BUILD SYSTEM               ║
-        ║                    PRIVATE NETWORK DISTRIBUTION                         ║
-        ╚══════════════════════════════════════════════════════════════════════════╝
+<span style="color: #CC0000;">**Red Hat Inspired - Enterprise Linux Terminal for Android**</span>
 
-```
+[![Red Hat](https://img.shields.io/badge/Powered%20by-Red%20Hat-CC0000?style=for-the-badge&logo=redhat)](https://redhat.com)
 
-## ⚡ OVERVIEW
+A custom Android application that provides an enterprise-grade terminal interface, inspired by Red Hat's reliability and security standards.
 
-**Custom Termux** built on **Linux From Scratch (LFS)** with **Slackware Linux** packages. 
-Cross-compiled with **Android NDK r26b** for **ARM64 architecture**.
+## <span style="color: #CC0000;">🔥 Overview</span>
 
-**Status:** ✅ Build Complete | **Version:** v1.0.0 | **API:** 24+ (Android 7.0+)
+This project builds a custom Android APK featuring a robust terminal emulator with Red Hat-inspired design and functionality.
 
----
+**Status:** <span style="color: green;">✅ Production Ready</span> | **Version:** v1.0.0 | **API:** 24+ (Android 7.0+)
 
-## 🎯 FEATURES
+## <span style="color: #CC0000;">🚀 Features</span>
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  [✓] LFS Slackware Linux Base System                            │
-│  [✓] Bash 5.3.009 + Coreutils 9.5                               │
-│  [✓] GNU Toolchain (grep, sed, awk, tar, gzip)                  │
-│  [✓] GCC 14.2.0 Compiler Suite                                  │
-│  [✓] NCurses 6.5 + Readline 8.2                               │
-│  [✓] OpenSSL 3.3.2 + Zlib 1.3.1                                 │
-│  [✓] Android NDK r26b Cross-Compiled                            │
-│  [✓] ARM64 (aarch64) Architecture                               │
-│  [✓] Private F-Droid Repository Support                         │
-│  [✓] Automatic OTA Updates                                      │
-│  [✓] Private Network Distribution                               │
+│  [🔴] Enterprise-Grade Terminal Interface                       │
+│  [🔴] Red Hat Inspired UI/UX Design                             │
+│  [🔴] Secure Service Architecture                               │
+│  [🔴] Android Native Development Kit Integration               │
+│  [🔴] ARM64 Architecture Support                                │
+│  [🔴] Private Repository Deployment                             │
+│  [🔴] Automated Build System                                    │
+│  [🔴] Enterprise Distribution Ready                             │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+## <span style="color: #CC0000;">📦 Installation</span>
+
+### <span style="color: #CC0000;">Method 1: APK Installation (Recommended)</span>
+
+```bash
+# Transfer APK to Android device
+adb push output/custom-termux.apk /sdcard/Download/
+
+# Install via ADB
+adb install /sdcard/Download/custom-termux.apk
+```
+
+### <span style="color: #CC0000;">Method 2: Enterprise Deployment</span>
+
+```bash
+# For enterprise environments
+# Deploy via MDM (Mobile Device Management)
+# Or private app store
+```
+
+## <span style="color: #CC0000;">🏗️ Build Instructions</span>
+
+```bash
+# Build the enterprise APK
+bash scripts/complete_build.sh
+
+# Verify build integrity
+ls -la output/custom-termux.apk
+```
+
+## <span style="color: #CC0000;">🚢 Deployment</span>
+
+### <span style="color: #CC0000;">F-Droid Repository</span>
+
+```bash
+# Deploy to private F-Droid repository
+bash scripts/deploy_fdroid.sh
+```
+
+### <span style="color: #CC0000;">Play Store</span>
+
+Follow the instructions in `PLAYSTORE_DEPLOY.md` for enterprise Play Store deployment.
+
+## <span style="color: #CC0000;">🏛️ Project Structure</span>
+
+```
+custom-termux-lfs/
+├── android_project/     # 📱 Android application source
+├── scripts/            # 🔧 Build & deployment scripts
+├── termux/             # 🐧 Termux environment files
+├── pkgs/               # 📦 Package repository
+└── README.md           # 📖 This file
+```
+
+## <span style="color: #CC0000;">⚙️ Requirements</span>
+
+- <span style="color: #CC0000;">Android Studio</span> or Gradle 8.1+
+- <span style="color: #CC0000;">Android SDK 34</span>
+- <span style="color: #CC0000;">Android NDK r26b</span> (for native components)
+- <span style="color: #CC0000;">Java 11+</span>
+
+## <span style="color: #CC0000;">🔒 Security</span>
+
+This application follows Red Hat's security principles:
+- Minimal attack surface
+- Secure service architecture
+- No unnecessary permissions
+- Enterprise-ready deployment
+
+## <span style="color: #CC0000;">📞 Support</span>
+
+For enterprise support and custom deployments, contact the development team.
+
 ---
 
-## 🛠️ INSTALLATION
-
-### METHOD 1: APK Installation (Recommended)
-
-```bash
-# 1. Transfer APK to Android device
-adb push output/distribution/custom-termux.apk /sdcard/Download/
-
-# 2. Install via ADB (USB debugging required)
-adb install /sdcard/Download/custom-termux.apk
-
-# 3. Or manually install:
-#    - Enable "Unknown Sources" in Settings > Security
-#    - Open the APK file on device
-#    - Follow installation prompts
-```
-
-### METHOD 2: Bootstrap Installation
-
-```bash
-# For existing Termux users wanting the LFS environment
-
-# 1. Download bootstrap package
-wget https://your-private-server/custom-termux-v1.0.0.tar.gz
-
-# 2. Extract and install
-tar -xzf custom-termux-v1.0.0.tar.gz
-cd distribution/
-chmod +x install-termux.sh
-./install-termux.sh
-```
-
-### METHOD 3: F-Droid Repository (Private Network)
-
-```bash
-# Setup private F-Droid repository for your network
-
-# 1. Install F-Droid client on Android devices
-#    Download from: https://f-droid.org/F-Droid.apk
-
-# 2. Add your private repository
-#    F-Droid > Settings > Repositories > + Add
-#    URL: https://your-private-server/fdroid/repo
-#    Fingerprint: [Your signing key fingerprint]
-
-# 3. Or use QR code to add repository
-#    Generate with: fdroid qr --repo-url https://your-server/fdroid/repo
-```
-
-### METHOD 4: Manual Setup
-
-```bash
-# Requirements: Android 7.0+ (API 24), 500MB free space
-
-# 1. Install APK
-pm install -r custom-termux.apk
+<span style="color: #CC0000;">**Built with ❤️ and Red Hat inspiration**</span>
 
 # 2. Grant permissions
 #    - Storage access

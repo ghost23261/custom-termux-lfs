@@ -5,10 +5,10 @@
 
 set -e
 
-LFS="/mnt/samsung_ssd"
+LFS="/workspaces/custom-termux-lfs"
 OUTPUT_DIR="$LFS/output"
 FDROID_DIR="/var/www/fdroid"
-APK_FILE="$OUTPUT_DIR/distribution/custom-termux.apk"
+APK_FILE="$OUTPUT_DIR/custom-termux.apk"
 
 echo "═══════════════════════════════════════════════════════════════"
 echo "       F-DROID PRIVATE REPOSITORY DEPLOYMENT"
