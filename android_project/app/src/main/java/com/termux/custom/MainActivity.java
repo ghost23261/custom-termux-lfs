@@ -1,30 +1,26 @@
 package com.termux.custom;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.graphics.Color;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button launchButton = findViewById(R.id.launch_button);
-        launchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start Termux service
-                Intent serviceIntent = new Intent(MainActivity.this, TermuxService.class);
-                startService(serviceIntent);
-                
-                // Launch terminal activity
-                Intent terminalIntent = new Intent(MainActivity.this, TerminalActivity.class);
-                startActivity(terminalIntent);
-            }
-        });
+        
+        LinearLayout layout = new LinearLayout(this);
+        layout.setBackgroundColor(Color.BLACK);
+        
+        TextView tv = new TextView(this);
+        tv.setTextColor(Color.GREEN);
+        tv.setTextSize(16);
+        tv.setText("Custom Termux LFS\n$ Ready");
+        tv.setPadding(20, 20, 20, 20);
+        
+        layout.addView(tv);
+        setContentView(layout);
     }
 }
