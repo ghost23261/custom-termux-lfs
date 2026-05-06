@@ -6,8 +6,8 @@
 set -e
 
 LFS="/workspaces/custom-termux-lfs"
-ANDROID_PROJECT="$LFS/android_project"
-OUTPUT_DIR="$LFS/output"
+ANDROID_PROJECT="/home/as3soy3/Documents/custom-termux-lfs/android_project"
+OUTPUT_DIR="/home/as3soy3/Documents/custom-termux-lfs/output"
 TERMUX_ROOT="$LFS/termux"
 
 echo "Starting complete build process for Custom Termux APK..."
@@ -52,7 +52,7 @@ APP_BASE_NAME=`basename "$0"`
 
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS
 # to pass JVM options to this script.
-DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+DEFAULT_JVM_OPTS="-Xmx64m -Xms64m"
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
@@ -100,7 +100,8 @@ if [ -n "$JAVA_HOME" ] ; then
     fi
     if [ ! -x "$JAVACMD" ] ; then
         die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
-
+JAVA_HOME="/usr/lib/jvm/java-26-openjdk" # Adjust this path if necessary
+export JAVA_HOME
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
     fi
