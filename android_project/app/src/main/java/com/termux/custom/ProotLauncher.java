@@ -1,5 +1,6 @@
 package com.termux.custom;
 
+import android.os.Build;
 import android.util.Log;
 
 import java.io.File;
@@ -44,8 +45,8 @@ public class ProotLauncher {
             pb.environment().put("TERM", "xterm");
             pb.environment().put("LANG", "en_US.UTF-8");
             
-            // Redirect errors
-            pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+            // Redirect stderr into stdout for API levels below 26
+            pb.redirectErrorStream(true);
             
             processs = pb.start();
             Log.i(TAG, "Proot shell launched successfully");
@@ -144,7 +145,7 @@ public class ProotLauncher {
      * Terminate the current proot process
      */
     public void terminate() {
-        if (processs != null && processs.isAlive()) {
+        if (processs != null && isProcessAlive(processs)) {
             processs.destroy();
             Log.i(TAG, "Proot process terminated");
         }
@@ -154,9 +155,26 @@ public class ProotLauncher {
      * Force terminate the proot process
      */
     public void forceTerminate() {
-        if (processs != null && processs.isAlive()) {
-            processs.destroyForcibly();
-            Log.i(TAG, "Proot process force terminated");
+        if (processs != null && isProcessAlive(processs)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                processs.destroyForcibly();
+                Log.i(TAG, "Proot process force terminated");
+            } else {
+                processs.destroy();
+                Log.i(TAG, "Proot process terminated with destroy() on older API");
+            }
+        }
+    }
+
+    private boolean isProcessAlive(Process process) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return process.isAlive();
+        }
+        try {
+            process.exitValue();
+            return false;
+        } catch (IllegalThreadStateException e) {
+            return true;
         }
     }
     

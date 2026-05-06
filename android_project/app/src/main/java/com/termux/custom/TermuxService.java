@@ -60,6 +60,5 @@ public class TermuxService extends Service {
     public RootfsInitializer getRootfsInitializer() {
         return rootfsInitializer;
     }
-
-    }
 }
+
