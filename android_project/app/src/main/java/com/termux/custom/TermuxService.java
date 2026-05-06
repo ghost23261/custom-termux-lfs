@@ -2,44 +2,64 @@ package com.termux.custom;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.*;
-import java.io.*;
+import android.os.IBinder;
+import android.os.Binder;
+import android.util.Log;
 
 public class TermuxService extends Service {
+    private static final String TAG = "TermuxService";
     private final IBinder binder = new LocalBinder();
+    private RootfsInitializer rootfsInitializer;
 
     public class LocalBinder extends Binder {
         TermuxService getService() { return TermuxService.this; }
     }
 
-    @Override public IBinder onBind(Intent i) { return binder; }
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        rootfsInitializer = new RootfsInitializer(this);
+        Log.i(TAG, "TermuxService created");
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(this::setupEnvironment).start();
+        Log.i(TAG, "TermuxService starting");
+
+        // Initialize environment if not already done
+        if (rootfsInitializer.isRootfsEmpty()) {
+            Log.w(TAG, "Rootfs not initialized, attempting extraction");
+            rootfsInitializer.initialize(null);
+        }
+
+        // Get rootfs path for use by terminal
+        String rootfsPath = rootfsInitializer.getRootfsPath();
+        Log.i(TAG, "Rootfs path: " + rootfsPath);
+
         return START_STICKY;
     }
 
-    private void setupEnvironment() {
-        String base = "/data/data/com.termux.custom/files";
-        // Create required dirs
-        for (String d : new String[]{
-            base+"/home", base+"/rootfs",
-            base+"/usr/bin", base+"/usr/lib",
-            base+"/usr/etc", base+"/usr/tmp"}) {
-            new File(d).mkdirs();
+    /**
+     * Get the rootfs path for terminal access
+     */
+    public String getRootfsPath() {
+        if (rootfsInitializer != null) {
+            return rootfsInitializer.getRootfsPath();
         }
-        // Run install script if rootfs not yet set up
-        File installScript = new File(base + "/install-termux.sh");
-        File rootfs = new File(base + "/rootfs/bin/bash");
-        if (installScript.exists() && !rootfs.exists()) {
-            try {
-                new ProcessBuilder(
-                    "/data/data/com.termux/files/usr/bin/bash",
-                    installScript.getAbsolutePath())
-                    .redirectErrorStream(true)
-                    .start();
-            } catch (IOException ignored) {}
-        }
+        return null;
+    }
+
+    /**
+     * Get the RootfsInitializer instance
+     */
+    public RootfsInitializer getRootfsInitializer() {
+        return rootfsInitializer;
+    }
+
     }
 }
